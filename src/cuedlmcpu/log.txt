@@ -1,0 +1,179 @@
+g++ -msse -msse2 -Wall -I.. -pthread -DKALDI_DOUBLEPRECISION=0 -Wno-sign-compare -Wno-unused-local-typedefs -Winit-self -DHAVE_EXECINFO_H=1 -rdynamic -DHAVE_CXXABI_H -DHAVE_ATLAS -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/ATLAS/include -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/openfst/include -Wno-sign-compare -fopenmp -g  -DHAVE_CUDA -I/usr/local/cuda/include   -c -o rnnlm.o rnnlm.cc
+In file included from layer.h:10:0,
+                 from rnnlm.h:2,
+                 from rnnlm.cc:1:
+cudamatrix.h: In member function 'void matrix::hostsoftmax()':
+cudamatrix.h:287:16: warning: variable 'maxi' set but not used [-Wunused-but-set-variable]
+         int a, maxi;
+                ^
+cudamatrix.h: In member function 'void matrix::hostpartsoftmax(int, int)':
+cudamatrix.h:332:16: warning: variable 'maxi' set but not used [-Wunused-but-set-variable]
+         int a, maxi;
+                ^
+In file included from rnnlm.h:2:0,
+                 from rnnlm.cc:1:
+layer.h: In member function 'virtual int layer::getnumfea()':
+layer.h:76:5: warning: no return statement in function returning non-void [-Wreturn-type]
+     }
+     ^
+layer.h: In member function 'virtual int layer::getdimfea()':
+layer.h:80:5: warning: no return statement in function returning non-void [-Wreturn-type]
+     }
+     ^
+layer.h: In member function 'virtual matrix* layer::gethidden_ac()':
+layer.h:84:5: warning: no return statement in function returning non-void [-Wreturn-type]
+     }
+     ^
+rnnlm.cc: In destructor 'cuedrnnlm::RNNLM::~RNNLM()':
+rnnlm.cc:79:24: warning: deleting object of polymorphic class type 'layer' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+         delete layers[i];
+                        ^
+In file included from rnnlm.cc:1:0:
+rnnlm.h: In constructor 'cuedrnnlm::RNNLM::RNNLM(std::string, std::string, std::string, int, bool, int, int, int, int)':
+rnnlm.h:38:24: warning: 'cuedrnnlm::RNNLM::binformat' will be initialized after [-Wreorder]
+     bool alpha_divide, binformat, flag_nceunigram;
+                        ^
+rnnlm.h:31:52: warning:   'int cuedrnnlm::RNNLM::debug' [-Wreorder]
+     int rand_seed, deviceid, minibatch, chunksize, debug, iter, lrtunemode, traincritmode,
+                                                    ^
+rnnlm.cc:94:1: warning:   when initialized here [-Wreorder]
+ RNNLM::RNNLM(string inmodelfile_1, string inputwlist_1, string outputwlist_1, int fvocsize, bool bformat, int debuglevel, int mbsize/*=1*/, int cksize/*=1*/, int dev/*=0*/):inmodelfile(inmodelfile_1), inputwlist(inputwlist_1), outputwlist(outputwlist_1), binformat(bformat),  debug(debuglevel)
+ ^
+rnnlm.cc:96:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+rnnlm.cc: In member function 'void cuedrnnlm::RNNLM::InitVariables()':
+rnnlm.cc:276:9: warning: unused variable 'i' [-Wunused-variable]
+     int i, j;
+         ^
+rnnlm.cc:276:12: warning: unused variable 'j' [-Wunused-variable]
+     int i, j;
+            ^
+rnnlm.cc: In member function 'void cuedrnnlm::RNNLM::ReadWordlist(std::string, std::string)':
+rnnlm.cc:401:12: warning: unused variable 'a' [-Wunused-variable]
+     int i, a, b;
+            ^
+rnnlm.cc:401:15: warning: unused variable 'b' [-Wunused-variable]
+     int i, a, b;
+               ^
+rnnlm.cc:402:11: warning: unused variable 'v' [-Wunused-variable]
+     float v;
+           ^
+rnnlm.cc:442:9: warning: unused variable 'clsid' [-Wunused-variable]
+     int clsid, prevclsid = 0;
+         ^
+rnnlm.cc:442:16: warning: unused variable 'prevclsid' [-Wunused-variable]
+     int clsid, prevclsid = 0;
+                ^
+rnnlm.cc: In member function 'bool cuedrnnlm::RNNLM::calppl(std::string, float, std::string)':
+rnnlm.cc:568:19: warning: statement has no effect [-Wunused-value]
+             for (i; i<cnt; i++)
+                   ^
+rnnlm.cc:495:12: warning: unused variable 'j' [-Wunused-variable]
+     int i, j, wordcn, nwordoov, cnt;
+            ^
+rnnlm.cc:502:11: warning: unused variable 'fptr' [-Wunused-variable]
+     FILE *fptr=NULL, *fptr_nglm=NULL;
+           ^
+rnnlm.cc: In member function 'bool cuedrnnlm::RNNLM::calnbest(std::string, float, std::string)':
+rnnlm.cc:774:19: warning: statement has no effect [-Wunused-value]
+             for (i; i<cnt; i++)
+                   ^
+rnnlm.cc:686:12: warning: unused variable 'j' [-Wunused-variable]
+     int i, j, wordcn, cnt, nbestid, prevnbestid=-1, sentcnt=0, nword;
+            ^
+rnnlm.cc:691:39: warning: variable 'lmscore' set but not used [-Wunused-but-set-variable]
+           ppl_int, sentlogp, acscore, lmscore, score, maxscore;
+                                       ^
+rnnlm.cc:693:11: warning: unused variable 'fptr' [-Wunused-variable]
+     FILE *fptr=NULL, *fptr_nglm=NULL;
+           ^
+g++ -msse -msse2 -Wall -I.. -pthread -DKALDI_DOUBLEPRECISION=0 -Wno-sign-compare -Wno-unused-local-typedefs -Winit-self -DHAVE_EXECINFO_H=1 -rdynamic -DHAVE_CXXABI_H -DHAVE_ATLAS -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/ATLAS/include -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/openfst/include -Wno-sign-compare -fopenmp -g  -DHAVE_CUDA -I/usr/local/cuda/include   -c -o fileops.o fileops.cc
+In file included from fileops.cc:2:0:
+fileops.h: In constructor 'ReadFileBuf::ReadFileBuf(std::string, WORDMAP&, WORDMAP&, int, int, int, int)':
+fileops.h:130:25: warning: 'ReadFileBuf::outputmap' will be initialized after [-Wreorder]
+     WORDMAP &inputmap, &outputmap;
+                         ^
+fileops.h:120:38: warning:   'int ReadFileBuf::minibatch' [-Wreorder]
+     int linecnt, wordcnt, cachesize, minibatch, lineperstream,
+                                      ^
+fileops.cc:13:1: warning:   when initialized here [-Wreorder]
+ ReadFileBuf::ReadFileBuf(string txtfile, WORDMAP &inmap, WORDMAP &outmap, int mbsize, int csize, int num_fea/*= false*/, int rint/* = -1*/): filename(txtfile), inputmap(inmap), outputmap(outmap), minibatch(mbsize), cachesize(csize), Indata(NULL), Outdata(NULL), inputbufptr(NULL), outputbufptr(NULL), mbcnter(0)
+ ^
+In file included from fileops.cc:2:0:
+fileops.h:120:38: warning: 'ReadFileBuf::minibatch' will be initialized after [-Wreorder]
+     int linecnt, wordcnt, cachesize, minibatch, lineperstream,
+                                      ^
+fileops.h:120:27: warning:   'int ReadFileBuf::cachesize' [-Wreorder]
+     int linecnt, wordcnt, cachesize, minibatch, lineperstream,
+                           ^
+fileops.cc:13:1: warning:   when initialized here [-Wreorder]
+ ReadFileBuf::ReadFileBuf(string txtfile, WORDMAP &inmap, WORDMAP &outmap, int mbsize, int csize, int num_fea/*= false*/, int rint/* = -1*/): filename(txtfile), inputmap(inmap), outputmap(outmap), minibatch(mbsize), cachesize(csize), Indata(NULL), Outdata(NULL), inputbufptr(NULL), outputbufptr(NULL), mbcnter(0)
+ ^
+In file included from fileops.cc:2:0:
+fileops.h:129:27: warning: 'ReadFileBuf::outputbufptr' will be initialized after [-Wreorder]
+     Matrix *inputbufptr, *outputbufptr;
+                           ^
+fileops.h:121:16: warning:   'int ReadFileBuf::mbcnter' [-Wreorder]
+         mbcnt, mbcnter, randint;
+                ^
+fileops.cc:13:1: warning:   when initialized here [-Wreorder]
+ ReadFileBuf::ReadFileBuf(string txtfile, WORDMAP &inmap, WORDMAP &outmap, int mbsize, int csize, int num_fea/*= false*/, int rint/* = -1*/): filename(txtfile), inputmap(inmap), outputmap(outmap), minibatch(mbsize), cachesize(csize), Indata(NULL), Outdata(NULL), inputbufptr(NULL), outputbufptr(NULL), mbcnter(0)
+ ^
+g++ -msse -msse2 -Wall -I.. -pthread -DKALDI_DOUBLEPRECISION=0 -Wno-sign-compare -Wno-unused-local-typedefs -Winit-self -DHAVE_EXECINFO_H=1 -rdynamic -DHAVE_CXXABI_H -DHAVE_ATLAS -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/ATLAS/include -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/openfst/include -Wno-sign-compare -fopenmp -g  -DHAVE_CUDA -I/usr/local/cuda/include   -c -o helper.o helper.cc
+helper.cc: In function 'void parseArray(std::string, std::vector<std::basic_string<char> >&)':
+helper.cc:118:9: warning: unused variable 'i' [-Wunused-variable]
+     int i, j;
+         ^
+helper.cc:118:12: warning: unused variable 'j' [-Wunused-variable]
+     int i, j;
+            ^
+helper.cc:119:10: warning: unused variable 'numstr' [-Wunused-variable]
+     char numstr, typestr;
+          ^
+helper.cc:119:18: warning: unused variable 'typestr' [-Wunused-variable]
+     char numstr, typestr;
+                  ^
+g++ -msse -msse2 -Wall -I.. -pthread -DKALDI_DOUBLEPRECISION=0 -Wno-sign-compare -Wno-unused-local-typedefs -Winit-self -DHAVE_EXECINFO_H=1 -rdynamic -DHAVE_CXXABI_H -DHAVE_ATLAS -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/ATLAS/include -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/openfst/include -Wno-sign-compare -fopenmp -g  -DHAVE_CUDA -I/usr/local/cuda/include   -c -o Mathops.o Mathops.cc
+g++ -msse -msse2 -Wall -I.. -pthread -DKALDI_DOUBLEPRECISION=0 -Wno-sign-compare -Wno-unused-local-typedefs -Winit-self -DHAVE_EXECINFO_H=1 -rdynamic -DHAVE_CXXABI_H -DHAVE_ATLAS -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/ATLAS/include -I/home/dawna/xc257/kaldi.Jan.2017/kaldi-ricky/tools/openfst/include -Wno-sign-compare -fopenmp -g  -DHAVE_CUDA -I/usr/local/cuda/include   -c -o layer.o layer.cc
+In file included from layer.h:10:0,
+                 from layer.cc:1:
+cudamatrix.h: In member function 'void matrix::hostsoftmax()':
+cudamatrix.h:287:16: warning: variable 'maxi' set but not used [-Wunused-but-set-variable]
+         int a, maxi;
+                ^
+cudamatrix.h: In member function 'void matrix::hostpartsoftmax(int, int)':
+cudamatrix.h:332:16: warning: variable 'maxi' set but not used [-Wunused-but-set-variable]
+         int a, maxi;
+                ^
+In file included from layer.cc:1:0:
+layer.h: In member function 'virtual int layer::getnumfea()':
+layer.h:76:5: warning: no return statement in function returning non-void [-Wreturn-type]
+     }
+     ^
+layer.h: In member function 'virtual int layer::getdimfea()':
+layer.h:80:5: warning: no return statement in function returning non-void [-Wreturn-type]
+     }
+     ^
+layer.h: In member function 'virtual matrix* layer::gethidden_ac()':
+layer.h:84:5: warning: no return statement in function returning non-void [-Wreturn-type]
+     }
+     ^
+layer.cc: In member function 'virtual void lstmlayer::host_forward(matrix*, matrix*)':
+layer.cc:300:12: warning: unused variable 'host_dstac' [-Wunused-variable]
+     float *host_dstac = neu1_ac->gethostdataptr ();
+            ^
+layer.cc: In member function 'virtual void lstmhighwaylayer::host_forward(matrix*, matrix*)':
+layer.cc:359:12: warning: unused variable 'host_dstac' [-Wunused-variable]
+     float *host_dstac = neu1_ac->gethostdataptr ();
+            ^
+layer.cc: In destructor 'outputlayer::~outputlayer()':
+layer.cc:477:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+layer.cc: In destructor 'recurrentlayer::~recurrentlayer()':
+layer.cc:496:9: warning: unused variable 'i' [-Wunused-variable]
+     int i;
+         ^
+ar -cru cued-lm.a rnnlm.o  fileops.o  helper.o  Mathops.o layer.o
+ranlib cued-lm.a
