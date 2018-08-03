@@ -33,7 +33,7 @@ namespace kaldi {
 enum {
   kEps = 0,
   kDisambig,
-  kBos, kEos,
+  kBos,kEos,
 };
 
 // Number of random sentences for coverage test.
@@ -88,10 +88,7 @@ ArpaLmCompiler* Compile(bool seps, const string &infile) {
       new ArpaLmCompiler(options,
                          seps ? kDisambig : 0,
                          &symbols);
-  {
-    Input ki(infile);
-    lm_compiler->Read(ki.Stream());
-  }
+  ReadKaldiObject(infile, lm_compiler);
   return lm_compiler;
 }
 
@@ -132,8 +129,6 @@ bool CoverageTest(bool seps, const string &infile) {
     RandGen(*genFst, &sentence);
     if (seps)
       AddSelfLoops(&sentence);
-
-    fst::ArcSort(lm_compiler->MutableFst(), fst::StdOLabelCompare());
 
     // The past must successfullycompose with the LM FST.
     fst::StdVectorFst composition;
@@ -204,17 +199,6 @@ bool ScoringTest(bool seps, const string &infile, const string& sentence,
   return ok;
 }
 
-bool ThrowsExceptionTest(bool seps, const string &infile) {
-  try {
-    // Make memory cleanup easy in both cases of try-catch block.
-    std::unique_ptr<ArpaLmCompiler> compiler(Compile(seps, infile));
-    return false;
-  } catch (const std::runtime_error&) {
-    // Kaldi throws only std::runtime_error in kaldi-error.cc
-    return true;
-  }
-}
-
 }  // namespace kaldi
 
 bool RunAllTests(bool seps) {
@@ -225,9 +209,6 @@ bool RunAllTests(bool seps) {
 
   ok &= kaldi::ScoringTest(seps, "test_data/input.arpa", "b b b a", 59.2649);
   ok &= kaldi::ScoringTest(seps, "test_data/input.arpa", "a b", 4.36082);
-
-  ok &= kaldi::ThrowsExceptionTest(seps, "test_data/missing_bos.arpa");
-
   if (!ok) {
     KALDI_WARN << "Tests " << (seps ? "with" : "without")
                << " epsilon substitution FAILED";
@@ -244,7 +225,8 @@ int main(int argc, char *argv[]) {
   if (ok) {
     KALDI_LOG << "All tests passed";
     return 0;
-  } else {
+  }
+  else {
     KALDI_WARN << "Test FAILED";
     return 1;
   }
